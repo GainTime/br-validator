@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//gaintime.github.io/cdn/latest/css/gaintime.min.css" media ="screen" title="no title">
+    <title>Br validator</title>
+  </head>
+  <body>
+    <header class="gt-top-menu fixed">
+      <a href=".">
+        <img src="assets/img/gaintime.svg" alt="GainTime" title="GainTime" />BR-validator
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#getStart">Como começar</a></li>
+          <li><a class="btn" href="#download">Download</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="banner first relative">
+      <div class="cover-box">
+        <div class="cover full-bg" style="background-image: url('assets/img/bb.jpg'); animation: parallax 1s ease-in-out"></div>
+        <div class="centerex">
+          <div class="gt-section transparent" style="color: #FFF">
+            <h1 class="no-margin">BR-validator</h1>
+            <p class="no-margin">GainTime</p>
+            <p>Validação e máscara de CPF, CNPJ, Telefones brasileiros, data e máscara de CEP com JavaScript puro.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h1>Validações e máscaras</h1>
+      <div class="inform info">
+        <p>
+          As validações acontecem <code>on blur</code>.
+        </p>
+      </div>
+      <div class="sm-6">
+        <div class="gt-form">
+          <h3>cpf</h3>
+          <label>Formata e valida CPF.</label>
+          <input id="cpf" type="text" name="cpf" data-validate="cpf" placeholder="000.000.000-00" maxlength="14">
+          <h3>cnpj</h3>
+          <label>Formata e valida CNPJ.</label>
+          <input id="cnpj" type="text" name="cnpj" data-validate="cnpj" placeholder="00.000.000/0000-00">
+          <h3>brPhone</h3>
+          <label for="brPhone">Formata e valida telefones e celulares brasileiros</label>
+          <input type="text" data-validate="brPhone" name="brPhone" placeholder="(00) 0000-0000">
+        </div>
+
+      </div>
+      <div class="sm-6">
+        <div class="gt-form">
+
+          <h3>date</h3>
+          <label for="date">Formata e valida datas (dd/mm/yyyy)</label>
+          <input type="text" data-validate="date" name="date" placeholder="19/08/1996">
+
+          <h3>num</h3>
+          <label>Aceita apenas algarismos (0-9).</label>
+          <input id="age" type="text" name="age" data-validate="num" placeholder="0123456789">
+          <h3>text</h3>
+          <label>Aceita apenas letras, espaço e apóstrofo. Pensado para campos de 'nome completo' e afins.</label>
+          <input id="name_3" type="text" name="name" placeholder="José Cateto Oposto" data-validate="text">
+
+        </div>
+      </div>
+      <div class="row xs-12">
+        <p>Para todos os casos anteriores, basta adicionar o atributo <code>data-validate</code> ao respectivo input com o valor referente à máscara desejada.</p>
+        <div class="code-block html">
+          <code>
+            <span class="el">&lt;</span>input
+            <span class="attr">type</span><span class="el">=</span><span class="value">"text"</span>
+            <span class="attr">data-validate</span><span class="el">=</span><span class="value">"cpf"</span><span class="el">&gt;</span>
+          </code>
+        </div>
+        <p>No caso do CEP, precisamos de uma ajuda externa para realizar o trabalho de validação. Nós utilizamos e recomendamos o <a href="https://viacep.com.br/" target="_blank">VIACEP</a>.</p>
+        <div class="code-block html">
+          <code>
+            <span class="el">&lt;</span>input
+            <span class="attr">type</span><span class="el">=</span><span class="value">"text"</span>
+            <span class="attr">data-validate</span><span class="el">=</span><span class="value">"cep"</span><span class="el">&gt;</span>
+          </code>
+        </div>
+        <div class="gt-form">
+          <h3>cep</h3>
+          <label for="cep">Formata CEP brasileiro. E valida com o VIACEP.</label>
+          <input type="text" data-validate="cep" name="cep" placeholder="44000-000">
+          <label for="state">Estado</label>
+          <input type="text" name="state" id="state" readonly>
+          <label for="city">Cidade</label>
+          <input type="text" name="city" id="city" readonly>
+        </div>
+        <p>Fornecemos uma lista com os inputs da sua página marcados com <code>data-validate="cep"</code>, e a partir daí você pode fazer o que bem entender, inclusive validar com a nossa função <code>viacep(input, callback)</code>. Ex:</p>
+        <div class="code-block html">
+          <pre>
+<code>ceps<span class="el">.</span><span class="func">forEach</span><span class="el">(</span>function<span class="el">(e) {</span></code>
+  <code>e<span class="el">.</span><span class="func">addEventListener</span><span class="el">(</span><span class="value">"blur"</span>, function<span class="el">(f) {</span></code>
+    <code>viacep<span class="el">(</span>f<span class="el">.</span><span class="func">target</span>, function<span class="el">(response) {</span></code>
+      <code><span class="attr">console</span><span class="el">.</span><span class="func">log</span><span class="el">(response);</span></code>
+    <code class="el">})</code>
+  <code class="el">})</code>
+<code class="el">})</code>
+          </pre>
+        </div>
+      </div>
+    </section>
+    <section id="getStart">
+      <h1>Como começar</h1>
+      <p>Importe o nosso JavaScript.</p>
+      <div class="code-block html">
+        <code><span class="el">&lt;</span>script <span class="attr">type</span><span class="el">=</span><span class="value">"text/javascript"</span> <span class="attr">src</span><span class="el">=</span><span class="value">"br-validator/dist/gaintime.br-validator.min.js"</span><span class="el">&gt;&lt;</span>/script<span class="el">&gt;</span></code>
+      </div>
+      <p>Adicione o atributo <code>data-validate</code> aos inputs que deseja validar, tal que o valor do atributo pode ser <code>cpf, cnpj, date, brPhone, cep, text</code> ou <code>num</code>.</p>
+      <div class="code-block html">
+        <code>
+          <span class="el">&lt;</span>input
+          <span class="attr">type</span><span class="el">=</span><span class="value">"text"</span>
+          <span class="attr">data-validate</span><span class="el">=</span><span class="value">"cpf"</span><span class="el">&gt;</span>
+        </code>
+      </div>
+    </section>
+    <section id="download">
+      <h1>Como começar</h1>
+      <p>Importe o nosso JavaScript.</p>
+      <div class="code-block html">
+        <code><span class="el">&lt;</span>script <span class="attr">type</span><span class="el">=</span><span class="value">"text/javascript"</span> <span class="attr">src</span><span class="el">=</span><span class="value">"br-validator/dist/gaintime.br-validator.min.js"</span><span class="el">&gt;&lt;</span>/script<span class="el">&gt;</span></code>
+      </div>
+      <p>Adicione o atributo <code>data-validate</code> aos inputs que deseja validar, tal que o valor do atributo pode ser <code>cpf, cnpj, date, brPhone, cep, text</code> ou <code>num</code>.</p>
+      <div class="code-block html">
+        <code>
+          <span class="el">&lt;</span>input
+          <span class="attr">type</span><span class="el">=</span><span class="value">"text"</span>
+          <span class="attr">data-validate</span><span class="el">=</span><span class="value">"cpf"</span><span class="el">&gt;</span>
+        </code>
+      </div>
+    </section>
+    <script src="assets/js/gaintime.smoothscroll.js" charset="utf-8"></script>
+    <script src="dist/gaintime.br-validator.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      ceps.forEach(function(e) {
+        e.addEventListener("blur", function(e) {
+          viacep(e.target, function(response) {
+            if ("" == e.target.value || response.erro) {
+              document.getElementById("state").value = ""
+              document.getElementById("city").value = ""
+            } else {
+              document.getElementById("state").value = response.uf
+              document.getElementById("city").value = response.localidade
+            }
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
