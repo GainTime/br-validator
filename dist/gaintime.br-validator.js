@@ -1,4 +1,4 @@
-/*GainTime BR-validator v1.0.0*/
+/*GainTime BR-validator v3.0.0*/
 function preformat(e, text) {
   var n = text ? e.textContent: e.value;
   var a = n;
