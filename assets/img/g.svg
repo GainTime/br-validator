@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   style="fill:#002776"
+   id="svg28"
+   preserveAspectRatio="xMidYMid meet"
+   viewBox="0 0 125.49508 120.69514"
+   height="120.69514pt"
+   width="125.49508pt"
+   version="1.1"
+   class="gaintime">
+  <metadata
+     id="metadata34">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Gain Time</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs32" />
+  <title
+     id="title2">Gain Time</title>
+  <g
+     style="stroke:none"
+     id="g26"
+     transform="matrix(0.1,0,0,-0.1,-7.0540247,122.84322)">
+    <path
+       id="path4"
+       d="M 542,1215 C 435,1191 335,1135 250,1050 163,963 131,909 96,786 33,570 88,360 249,200 336,113 413,69 526,40 670,3 830,22 963,92 c 80,42 203,164 242,240 17,32 32,58 36,58 3,0 15,-31 28,-70 21,-66 40,-86 56,-60 7,12 -63,230 -73,230 -4,0 -55,-16 -114,-36 -87,-29 -108,-39 -108,-55 0,-24 12,-24 89,2 34,12 65,18 68,15 10,-9 -19,-64 -70,-133 C 1065,213 957,131 874,100 803,74 697,62 613,71 436,90 277,194 187,350 96,509 91,715 175,880 c 59,116 186,227 310,271 75,26 228,36 308,19 139,-28 286,-135 364,-263 34,-57 55,-68 61,-33 5,23 -70,136 -121,183 -94,86 -162,122 -292,154 -92,22 -174,23 -263,4 z" />
+    <path
+       id="path6"
+       d="M 523,883 C 503,875 506,865 572,748 625,652 631,636 618,626 610,620 526,572 432,520 270,430 239,404 268,386 c 11,-7 422,223 422,236 0,13 -117,223 -138,247 -9,10 -23,17 -29,14 z" />
+  </g>
+</svg>

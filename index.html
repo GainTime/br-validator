@@ -2,22 +2,26 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="author" content="JP Rodrigues">
+    <meta name="description" content="O GainTime Br-validator é uma ferramenta para validação e máscara de CPF, CNPJ, telefones brasileiros, data e máscara de CEP com JavaScript puro.">
     <link rel="stylesheet" href="//gaintime.github.io/cdn/latest/css/gaintime.min.css" media ="screen" title="no title">
+    <link rel="icon" type="image/svg" href="assets/img/g.svg">
     <title>Br validator</title>
   </head>
   <body>
     <header class="gt-top-menu fixed">
-      <a href=".">
-        <img src="assets/img/gaintime.svg" alt="GainTime" title="GainTime" />BR-validator
+      <a href="#home">
+        <img class="hxs" src="assets/img/gaintime.svg" alt="GainTime" title="GainTime" /><span class="hxs">BR-validator</span>
+        <img class="voxs" src="assets/img/g.svg" alt="GainTime" title="GainTime" />
       </a>
       <nav>
         <ul>
           <li><a href="#getStart">Como começar</a></li>
-          <li><a class="btn" href="#download">Download</a></li>
+          <li><a class="btn info" style="color: #FFF" href="#download">Download</a></li>
         </ul>
       </nav>
     </header>
-    <section class="banner first relative">
+    <section id="home" class="banner first relative">
       <div class="cover-box">
         <div class="cover full-bg" style="background-image: url('assets/img/bb.jpg'); animation: parallax 1s ease-in-out"></div>
         <div class="centerex">
@@ -122,20 +126,59 @@
       </div>
     </section>
     <section id="download">
-      <h1>Como começar</h1>
-      <p>Importe o nosso JavaScript.</p>
-      <div class="code-block html">
-        <code><span class="el">&lt;</span>script <span class="attr">type</span><span class="el">=</span><span class="value">"text/javascript"</span> <span class="attr">src</span><span class="el">=</span><span class="value">"br-validator/dist/gaintime.br-validator.min.js"</span><span class="el">&gt;&lt;</span>/script<span class="el">&gt;</span></code>
-      </div>
-      <p>Adicione o atributo <code>data-validate</code> aos inputs que deseja validar, tal que o valor do atributo pode ser <code>cpf, cnpj, date, brPhone, cep, text</code> ou <code>num</code>.</p>
-      <div class="code-block html">
-        <code>
-          <span class="el">&lt;</span>input
-          <span class="attr">type</span><span class="el">=</span><span class="value">"text"</span>
-          <span class="attr">data-validate</span><span class="el">=</span><span class="value">"cpf"</span><span class="el">&gt;</span>
-        </code>
-      </div>
+      <h1>Download</h1>
+      <h2>GainTime BR-validator</h2>
+      <p>
+        JavaScript aberto e minificado.
+      </p>
+      <a class="btn" href="https://github.com/GainTime/br-validator/archive/v3.0.0.zip">Download</a>
+      <h2>Instalação com npm</h2>
+      <code class="code-block cmd">
+        $ npm install br-validator
+      </code>
+
+      <h3>Ou utilize daqui como uma "CDN"</h3>
+      <code class="code-block html">
+        <pre>
+<code><span class="el">&lt;</span>script <span class="attr">type</span><span class="el">=</span><span class="value">"text/javascript"</span> <span class="attr">src</span><span class="el">=</span><span class="value">"//gaintime.github.io/br-validator/cdn/$VERSION/js/gaintime.br-validator.min.js"</span><span class="el">&gt;&lt;</span>/script<span class="el">&gt;</span></code></pre>
+      </code>
+      <p>
+        Substitua <strong>$VERSION</strong> com a <a target="_blank" href="https://github.com/GainTime/br-validator/releases">release</a> necessária para você. Ou utilize sempre a versão mais atual substituindo por "latest".
+      </p>
+
     </section>
+    <footer class="dark flex-box">
+      <div class="col">
+        <p>
+          <strong>GainTime BR-validator</strong>, por <a href="https://github.com/jprodrigues70">JP Rodrigues</a>
+        </p>
+        <p>Código sob a licença <a href="https://opensource.org/licenses/mit-license.php">MIT</a>.</p>
+        <a href="https://github.com/GainTime/br-validator" class="content-align">
+          <svg fill="#FFF" aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg> <p>
+            GitHub
+          </p>
+        </a>
+      </div>
+      <div class="col">
+        <p>
+          Contribua com o <a href="https://github.com/GainTime/gaintime-factory">GainTime</a>.
+        </p>
+        <p>
+          Contribua com o <a href="https://github.com/GainTime/br-validator">GainTime Br-validator</a>.
+        </p>
+        <p>
+          Faça <a href="https://github.com/GainTime/br-validator/issues">report de erros</a>!
+        </p>
+        <p>
+          Faça <a href="https://github.com/GainTime/br-validator/issues">sugestões</a>!
+        </p>
+      </div>
+      <div class="col">
+        <p>
+          Versão v3.0.0
+        </p>
+      </div>
+    </footer>
     <script src="assets/js/gaintime.smoothscroll.js" charset="utf-8"></script>
     <script src="dist/gaintime.br-validator.js" charset="utf-8"></script>
     <script type="text/javascript">
