@@ -20,6 +20,9 @@ function preformat(e, text) {
       case "date":
       a = preformatDate(n);
       break;
+      case "shortDate":
+      a = preformatShortDate(n);
+      break;
     }
     text && (e.innerHTML = a), e.value = a
   } else text ? e.textContent = "": e.value = ""
@@ -128,6 +131,13 @@ function preformatDate(n) {
   m = s2.match(/^(\d{1,2})?[- ]??[\s]?(\d{1,2})?(.*)?$/);
   for (var i = 1; i <= 3; i++) if (!m[i]) m[i] = "";
   return m ? m[1] + "/" + m[2] + "/" + m[3]: null;
+}
+
+function preformatShortDate(n) {
+  s2 = ("" + n).replace(/\D/g,"");
+  m = s2.match(/^(\d{1,2})?[- ]??[\s]?(\d{1,2})?(.*)?$/);
+  for (var i = 1; i <= 3; i++) if (!m[i]) m[i] = "";
+  return m ? m[2] + "/" + m[3]: null;
 }
 
 function formatCpf(e, t) {
