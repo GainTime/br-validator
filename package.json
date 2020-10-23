@@ -1,6 +1,6 @@
 {
   "name": "br-validator",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "GainTime Br-validator é uma ferramenta para validação e máscara de CPF, CNPJ, telefones brasileiros, data e máscara de CEP com JavaScript puro..",
   "main": "dist/gaintime.br-validator.min.js",
   "repository": {

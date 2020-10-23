@@ -1,8 +1,8 @@
-import cpf from './cpf'
-import phone from './phone'
-import cnpj from './cnpj'
+import cpf from './modules/cpf'
+import phone from './modules/phone'
+import cnpj from './modules/cnpj'
 // import cep from './cep'
-import date from './date'
+import date from './modules/date'
 
 export default {
   cpf,
