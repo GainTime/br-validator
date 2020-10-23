@@ -28,7 +28,7 @@ npm install br-validator@4.1.0-script
 Será criada uma variável global chamada `br`
 
 ```html
-<script type="text/javascript" src="br-validator/dist/index.js"></script>
+<script type="text/javascript" src="br-validator/build/index.js"></script>
 <script>
   br.init() // Configuração padrão
 
