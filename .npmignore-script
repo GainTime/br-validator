@@ -6,4 +6,4 @@ webpack.config.js
 .gitignore
 index.html
 *.map
-build/
+dist/

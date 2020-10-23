@@ -1,1 +1,169 @@
-var br;br=(()=>{"use strict";var e={183:function(t,e,r){var n,a=this&&this.__extends||(n=function(t,e){return(n=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[r]=e[r])})(t,e)},function(t,e){function r(){this.constructor=t}n(t,e),t.prototype=null===e?Object.create(e):(r.prototype=e.prototype,new r)}),i=this&&this.__createBinding||(Object.create?function(t,e,r,n){void 0===n&&(n=r),Object.defineProperty(t,n,{enumerable:!0,get:function(){return e[r]}})}:function(t,e,r,n){void 0===n&&(n=r),t[n]=e[r]});e.__esModule=!0,e.init=e.Br=e.cep=e.Validator=e.Formatter=void 0;var o=r(607);i(e,o,"Formatter"),i(e,o,"Validator"),i(e,o,"cep");var s=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return a(e,t),e}(r(607).default);e.Br=s,e.init=function(){return(new s).init()}},607:function(t,e,r){var n=this&&this.__spreadArrays||function(){for(var t=0,e=0,r=arguments.length;e<r;e++)t+=arguments[e].length;var n=Array(t),a=0;for(e=0;e<r;e++)for(var i=arguments[e],o=0,s=i.length;o<s;o++,a++)n[a]=i[o];return n};e.__esModule=!0,e.Formatter=e.Validator=e.cep=void 0;var a=r(1),i=r(121),o=r(372);e.cep=function(t,e){var r=t.value.replace(/[^0-9]/,""),n=new s;if(8!=r.length)return n.invalid(t,"cep");var a=new XMLHttpRequest;a.onreadystatechange=function(){if(4==this.readyState&&200==this.status){var r=JSON.parse(this.responseText);return e(r),r.erro?n.invalid(t,"cep"):n.valid(t)}},a.open("GET","https://viacep.com.br/ws/"+r+"/json/",!0),a.send()};var s=function(){function t(t){if(void 0===t&&(t={css:!0,messages:!0}),this.options=t,this.options.css){var e=document.createElement("style");e.innerHTML=".c-br-validator--invalid { border-color: #F00; }";var r=document.getElementsByTagName("head");r&&r[0]&&r[0].appendChild(e)}}return t.prototype.check=function(t,e,r){return void 0===r&&(r=null),e&&a.default[e]&&a.default[e](t,r)},t.prototype.invalid=function(t,e){t.classList.add("c-br-validator--invalid"),this.options.messages&&t.setCustomValidity(o.default[e]||"Valor inválido")},t.prototype.valid=function(t){t.classList.remove("c-br-validator--invalid"),t.setCustomValidity("")},t.prototype.validateOnBlur=function(t,e){var r=this;return a.default[e]&&t.addEventListener("blur",(function(t){t.target.value&&r.apply(t.target,e)}))},t.prototype.apply=function(t,e){var r=null;"cep"===e&&t.dataset.callback&&(r=t.dataset.callback),this.check(t.value,e,r)?this.valid(t):this.invalid(t,e)},t}();e.Validator=s;var l=function(){function t(){this.controlKeys=["backspace","delete","home","pageup","pagedown","end","printscreen","tab","capslock","control","alt","meta","altgraph","escape","arrowleft","arrowup","arrowright","numlock","enter","shift","scrolllock","pause"]}return t.prototype.formatOnType=function(t,e){var r=this;this.keyup(t,(function(n){n.controller||r.apply(t,e)}))},t.prototype.keyup=function(t,e){var r=this;return t.addEventListener("keyup",(function(t){return e({ctrlV:t.ctrlKey&&"v"===t.key.toLowerCase(),controller:t.key&&r.controlKeys.includes(t.key.toLowerCase()),key:t.key})}))},t.prototype.apply=function(t,e){void 0===e&&(e=null),t&&t.value,t.value=e(t.value)},t}();e.Formatter=l;var c=function(){function t(t){void 0===t&&(t={css:!0,messages:!0}),this.fields={},this.options=t}return t.prototype.init=function(){var t=this;return this.formatter=new l,this.validator=new s(this.options),[].slice.call(document.querySelectorAll("[data-validate]")).forEach((function(e){var r=e&&e.dataset&&e.dataset.validate;t.fields[r]=Array.isArray(t.fields[r])?n(t.fields[r],[e]):[e]})),Object.keys(i.default).forEach((function(e){return t.eachFieldFormat(e)})),Object.keys(a.default).forEach((function(e){return t.eachFieldValidate(e)})),this},t.prototype.eachFieldFormat=function(t){var e=this;return i.default[t]&&this.fields[t]&&this.fields[t].forEach((function(r){e.formatter.formatOnType(r,i.default[t]),r.value&&e.formatter.apply(r,i.default[t])}))},t.prototype.eachFieldValidate=function(t){var e=this;return this.fields[t]&&this.fields[t].forEach((function(r){e.validator.validateOnBlur(r,t),r.value&&e.validator.apply(r,t)}))},t}();e.default=c},121:(t,e,r)=>{r.r(e),r.d(e,{default:()=>n});const n={cpf:function(t){const e=(""+t).replace(/\D/g,""),r=e.match(/^(\d{1,3})?[- ]??[\s]?(\d{1,3})?[\s]?(\d{1,3})?(.*)?$/);for(let t=1;t<=4;t++)r[t]||(r[t]="");return!r[1]||e.length<3?t:r[1]&&!r[2]?r[1]+".":r[2]&&!r[3]?`${r[1]}.${r[2]}${e.length<6?"":"."}`:r[3]&&!r[4]?`${r[1]}.${r[2]}.${r[3]}${e.length<9?"":"-"}`:`${r[1]}.${r[2]}.${r[3]}-${r[4]}`},phone:function(t){const e=(""+t).replace(/\D/g,"");let r=[];r=e.length<=10?e.match(/^(\d{1,2})?[- ]?(\d{1,4})?(\d{1,4})?(.*)?$/):e.match(/^(\d{1,2})?[- ]?(\d{1,5})?(\d{1,4})?(.*)?$/);for(let t=1;t<=3;t++)r[t]||(r[t]="");return!r[1]||e.length<2?t:r[1]&&!r[2]?`(${r[1]}) `:r[2]&&!r[3]?`(${r[1]}) ${r[2]}${e.length<6?"":"-"}`:r[3]?`(${r[1]}) ${r[2]}-${r[3]}`:void 0},cnpj:function(t){const e=(""+t).replace(/\D/g,""),r=e.match(/^(\d{1,2})?[- ]??[\s]?(\d{1,3})?[\s]?(\d{1,3})?(\d{1,4})?(\d{1,2})?(.*)?$/);for(let t=1;t<=5;t++)r[t]||(r[t]="");return!r[1]||e.length<3?t:r[1]&&!r[2]?r[1]+".":r[2]&&!r[3]?`${r[1]}.${r[2]}${e.length<5?"":"."}`:r[3]&&!r[4]?`${r[1]}.${r[2]}.${r[3]}${e.length<8?"":"/"}`:r[4]&&!r[5]?`${r[1]}.${r[2]}.${r[3]}/${r[4]}${e.length<12?"":"-"}`:`${r[1]}.${r[2]}.${r[3]}/${r[4]}${r[5]}`},cep:function(t){const e=(""+t).replace(/\D/g,""),r=e.match(/^(\d{1,5})?[- ]??[\s]?(\d{1,3})?(.*)?$/);for(let t=1;t<=2;t++)r[t]||(r[t]="");return!r[1]||e.length<5?t:`${r[1]}-${r[2]}`},date:function(t){const e=(""+t).replace(/\D/g,""),r=e.match(/^(\d{1,2})?[- ]??[\s]?(\d{1,2})?(.*)?$/);for(let t=1;t<=3;t++)r[t]||(r[t]="");return!r[1]||e.length<2?t:r[1]&&!r[2]?r[1]+"/":r[2]&&!r[3]?`${r[1]}/${r[2]}${e.length<4?"":"/"}`:r[3]?`${r[1]}/${r[2]}/${r[3]}`:void 0}}},372:(t,e,r)=>{r.r(e),r.d(e,{default:()=>n});const n={cpf:"Este CPF é inválido.",cnpj:"Este CNPJ é inválido.",phone:"Este Telefone é inválido.",date:"Esta Data é inválida.",cep:"Este CEP é inválido."}},1:(e,a,o)=>{o.r(a),o.d(a,{default:()=>l});const l={cpf:function(t){const e=t.replace(/\./g,"").replace(/\-/g,"");if(["00000000000","11111111111","22222222222","33333333333","44444444444","55555555555","66666666666","77777777777","88888888888","99999999999"].includes(e))return!1;let r=0,n=0;for(let t=1;t<=9;t++)r+=parseInt(e.substring(t-1,t))*(11-t);if(n=10*r%11,10!=n&&11!=n||(n=0),n!=parseInt(e.substring(9,10)))return!1;r=0;for(let t=1;t<=10;t++)r+=parseInt(e.substring(t-1,t))*(12-t);return n=10*r%11,10!=n&&11!=n||(n=0),n==parseInt(e.substring(10,11))},phone:function(t){let e=t.replace(/\D/g,"");return e.length>=10&&e.length<=11&&(11!=e.length||9==parseInt(e.substring(2,3)))&&[11,12,13,14,15,16,17,18,19].concat([21,22,24,27,28],[31,32,33,34,35,37,38],[41,42,43,44,45,46,47,48,49],[51,53,54,55],[61,62,64,63,65,66,67,68,69],[71,73,74,75,77,79],[81,82,83,84,85,86,87,88,89],[91,92,93,94,95,96,97,98,99]).includes(parseInt(e.substring(0,2)))},cnpj:function(e){if(""==(e=e.replace(/[^\d]+/g,"")))return!1;if(14!=e.length)return!1;if("00000000000000"==e||"11111111111111"==e||"22222222222222"==e||"33333333333333"==e||"44444444444444"==e||"55555555555555"==e||"66666666666666"==e||"77777777777777"==e||"88888888888888"==e||"99999999999999"==e)return!1;for(n=e.substring(0,12),d=e.substring(12),t=12,s=0,p=5,i=t;i>=1;i--)s+=n.charAt(t-i)*p--,p<2&&(p=9);if(r=s%11<2?0:11-s%11,r!=d.charAt(0))return!1;for(n=e.substring(0,13),t=13,s=0,p=6,i=t;i>=1;i--)s+=n.charAt(t-i)*p--,p<2&&(p=9);return r=s%11<2?0:11-s%11,r==d.charAt(1)},date:function(t){const e=t.replace(/\D/g,""),r=parseInt(e.substring(0,2)),n=parseInt(e.substring(2,4)),a=parseInt(e.substring(4));if(r>30&&[4,6,9,11].includes(n))return!1;if(2===n)if(a%4!=0||a%100==0&&a%400!=0){if(r>28)return falses}else if(r>29)return!1;return!(e.length<5||n>12||r>31||r<1)},text:function(t){return t.match(/^[a-zA-ZÃẼĨÕŨãẽĩõũÁÉÍÓÚáéíóúÂÊÎÔÛâêîôûÀÈÌÒÙàèìòùÄËÏÖÜäëïöü' ]*$/)},integer:function(t){return t.match(/^[\d]*$/g)}}}},a={};function o(t){if(a[t])return a[t].exports;var r=a[t]={exports:{}};return e[t].call(r.exports,r,r.exports,o),r.exports}return o.d=(t,e)=>{for(var r in e)o.o(e,r)&&!o.o(t,r)&&Object.defineProperty(t,r,{enumerable:!0,get:e[r]})},o.o=(t,e)=>Object.prototype.hasOwnProperty.call(t,e),o.r=t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},o(183)})();
+"use strict";
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Formatter = exports.Validator = exports.cep = void 0;
+var validators_1 = require("./validators");
+var formatters_1 = require("./formatters");
+var messages_1 = require("./messages");
+function cep(el, callback) {
+    var cep = el.value.replace(/[^0-9]/, '');
+    var validator = new Validator();
+    if (cep.length != 8) {
+        return validator.invalid(el, 'cep');
+    }
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var result = JSON.parse(this.responseText);
+            callback(result);
+            return result.erro ? validator.invalid(el, 'cep') : validator.valid(el);
+        }
+    };
+    http.open('GET', 'https://viacep.com.br/ws/' + cep + '/json/', true);
+    http.send();
+}
+exports.cep = cep;
+var Validator = /** @class */ (function () {
+    function Validator(options) {
+        if (options === void 0) { options = { css: true, messages: true }; }
+        this.options = options;
+        if (this.options.css) {
+            var style = document.createElement('style');
+            style.innerHTML = '.c-br-validator--invalid { border-color: #F00; }';
+            var heads = document.getElementsByTagName('head');
+            if (heads && heads[0]) {
+                heads[0].appendChild(style);
+            }
+        }
+    }
+    Validator.prototype.check = function (raw, type, callback) {
+        if (callback === void 0) { callback = null; }
+        return type && validators_1.default[type] && validators_1.default[type](raw, callback);
+    };
+    Validator.prototype.invalid = function (el, type) {
+        el.classList.add('c-br-validator--invalid');
+        this.options.messages &&
+            el.setCustomValidity(messages_1.default[type] || 'Valor inválido');
+    };
+    Validator.prototype.valid = function (el) {
+        el.classList.remove('c-br-validator--invalid');
+        el.setCustomValidity('');
+    };
+    Validator.prototype.validateOnBlur = function (item, type) {
+        var _this = this;
+        return (validators_1.default[type] &&
+            item.addEventListener('blur', function (event) {
+                if (event.target.value) {
+                    _this.apply(event.target, type);
+                }
+            }));
+    };
+    Validator.prototype.apply = function (el, type) {
+        var callback = null;
+        if (type === 'cep' && el.dataset.callback) {
+            callback = el.dataset.callback;
+        }
+        var valid = this.check(el.value, type, callback);
+        valid ? this.valid(el) : this.invalid(el, type);
+    };
+    return Validator;
+}());
+exports.Validator = Validator;
+var Formatter = /** @class */ (function () {
+    function Formatter() {
+        this.controlKeys = [
+            'backspace',
+            'delete',
+            'home',
+            'pageup',
+            'pagedown',
+            'end',
+            'printscreen',
+            'tab',
+            'capslock',
+            'control',
+            'alt',
+            'meta',
+            'altgraph',
+            'escape',
+            'arrowleft',
+            'arrowup',
+            'arrowright',
+            'numlock',
+            'enter',
+            'shift',
+            'scrolllock',
+            'pause'
+        ];
+    }
+    Formatter.prototype.formatOnType = function (el, callback) {
+        var _this = this;
+        this.keyup(el, function (info) {
+            if (!info.controller) {
+                _this.apply(el, callback);
+            }
+        });
+    };
+    Formatter.prototype.keyup = function (item, callback) {
+        var _this = this;
+        return item.addEventListener('keyup', function (event) {
+            return callback({
+                ctrlV: event.ctrlKey && event.key.toLowerCase() === 'v',
+                controller: event.key && _this.controlKeys.includes(event.key.toLowerCase()),
+                key: event.key
+            });
+        });
+    };
+    Formatter.prototype.apply = function (el, callback) {
+        if (callback === void 0) { callback = null; }
+        el && el.value, (el.value = callback(el.value));
+    };
+    return Formatter;
+}());
+exports.Formatter = Formatter;
+var Br = /** @class */ (function () {
+    function Br(options) {
+        if (options === void 0) { options = { css: true, messages: true }; }
+        this.fields = {};
+        this.options = options;
+    }
+    Br.prototype.init = function () {
+        var _this = this;
+        this.formatter = new Formatter();
+        this.validator = new Validator(this.options);
+        var candidates = [].slice.call(document.querySelectorAll('[data-validate]'));
+        candidates.forEach(function (item) {
+            var v = item && item.dataset && item.dataset.validate;
+            _this.fields[v] = Array.isArray(_this.fields[v])
+                ? __spreadArrays(_this.fields[v], [item]) : [item];
+        });
+        Object.keys(formatters_1.default).forEach(function (key) { return _this.eachFieldFormat(key); });
+        Object.keys(validators_1.default).forEach(function (key) { return _this.eachFieldValidate(key); });
+        return this;
+    };
+    Br.prototype.eachFieldFormat = function (type) {
+        var _this = this;
+        return (formatters_1.default[type] &&
+            this.fields[type] &&
+            this.fields[type].forEach(function (el) {
+                _this.formatter.formatOnType(el, formatters_1.default[type]);
+                el.value && _this.formatter.apply(el, formatters_1.default[type]);
+            }));
+    };
+    Br.prototype.eachFieldValidate = function (type) {
+        var _this = this;
+        return (this.fields[type] &&
+            this.fields[type].forEach(function (el) {
+                _this.validator.validateOnBlur(el, type);
+                el.value && _this.validator.apply(el, type);
+            }));
+    };
+    return Br;
+}());
+exports.default = Br;

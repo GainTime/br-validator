@@ -21,6 +21,10 @@ const BR = br.init()
 
 ### text/javascript
 
+```
+npm install br-validator@4.1.0-script
+```
+
 Será criada uma variável global chamada `br`
 
 ```html
