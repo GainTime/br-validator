@@ -1,0 +1,9 @@
+src/
+node_modules/
+.prettierrc
+tsconfig.json
+webpack.config.js
+.gitignore
+index.html
+*.map
+dist/
