@@ -1,13 +1,15 @@
 import cpf from './modules/cpf'
 import phone from './modules/phone'
 import cnpj from './modules/cnpj'
-// import cep from './cep'
 import date from './modules/date'
+import text from './modules/text'
+import integer from './modules/integer'
 
 export default {
   cpf,
   phone,
   cnpj,
-  // cep,
-  date
+  date,
+  text,
+  integer
 }

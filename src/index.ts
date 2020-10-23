@@ -2,6 +2,25 @@ import validators from './validators'
 import formatters from './formatters'
 import messages from './messages'
 
+export function cep(el, callback) {
+  const cep = el.value.replace(/[^0-9]/, '')
+  const validator = new Validator()
+  if (cep.length != 8) {
+    return validator.invalid(el, 'cep')
+  }
+
+  const http = new XMLHttpRequest()
+
+  http.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const result = JSON.parse(this.responseText)
+      callback(result)
+      return result.erro ? validator.invalid(el, 'cep') : validator.valid(el)
+    }
+  }
+  http.open('GET', 'https://viacep.com.br/ws/' + cep + '/json/', true)
+  http.send()
+}
 export class Validator {
   options: any
 
@@ -16,8 +35,9 @@ export class Validator {
       }
     }
   }
-  check(raw, type) {
-    return type && validators[type] && validators[type](raw)
+
+  check(raw, type, callback = null) {
+    return type && validators[type] && validators[type](raw, callback)
   }
 
   invalid(el, type) {
@@ -30,11 +50,29 @@ export class Validator {
     el.classList.remove('c-br-validator--invalid')
     el.setCustomValidity('')
   }
+
+  validateOnBlur(item, type) {
+    return (
+      validators[type] &&
+      item.addEventListener('blur', (event) => {
+        if (event.target.value) {
+          this.apply(event.target, type)
+        }
+      })
+    )
+  }
+
+  apply(el, type) {
+    let callback = null
+    if (type === 'cep' && el.dataset.callback) {
+      callback = el.dataset.callback
+    }
+    const valid = this.check(el.value, type, callback)
+    valid ? this.valid(el) : this.invalid(el, type)
+  }
 }
 
 export class Formatter {
-  $fields: any = {}
-
   controlKeys = [
     'backspace',
     'delete',
@@ -59,31 +97,6 @@ export class Formatter {
     'scrolllock',
     'pause'
   ]
-
-  init() {
-    const candidates = [].slice.call(
-      document.querySelectorAll('[data-validate]')
-    )
-
-    candidates.forEach((item) => {
-      const v = item && item.dataset && item.dataset.validate
-      this.$fields[v] = Array.isArray(this.$fields[v])
-        ? [...this.$fields[v], item]
-        : [item]
-    })
-
-    Object.keys(formatters).forEach((key) => this.eachFieldFormat(key))
-  }
-
-  eachFieldFormat(type) {
-    return (
-      this.$fields[type] &&
-      this.$fields[type].forEach((el) => {
-        this.formatOnType(el, formatters[type])
-        el.value && this.apply(el, formatters[type])
-      })
-    )
-  }
 
   formatOnType(el, callback) {
     this.keyup(el, (info) => {
@@ -113,6 +126,8 @@ export default class Br {
   formatter: Formatter
   validator: Validator
   options: any
+  fields: any = {}
+
   constructor(options = { css: true, messages: true }) {
     this.options = options
   }
@@ -120,32 +135,41 @@ export default class Br {
   init() {
     this.formatter = new Formatter()
     this.validator = new Validator(this.options)
-    this.formatter.init()
-    Object.keys(formatters).forEach((key) => this.eachFieldValidate(key))
+
+    const candidates = [].slice.call(
+      document.querySelectorAll('[data-validate]')
+    )
+
+    candidates.forEach((item) => {
+      const v = item && item.dataset && item.dataset.validate
+      this.fields[v] = Array.isArray(this.fields[v])
+        ? [...this.fields[v], item]
+        : [item]
+    })
+
+    Object.keys(formatters).forEach((key) => this.eachFieldFormat(key))
+    Object.keys(validators).forEach((key) => this.eachFieldValidate(key))
+    return this
   }
 
-  eachFieldValidate(type) {
+  eachFieldFormat(type) {
     return (
-      this.formatter.$fields[type] &&
-      this.formatter.$fields[type].forEach((el) => {
-        this.validateOnBlur(el, type)
-        el.value && this.apply(el, type)
+      formatters[type] &&
+      this.fields[type] &&
+      this.fields[type].forEach((el) => {
+        this.formatter.formatOnType(el, formatters[type])
+        el.value && this.formatter.apply(el, formatters[type])
       })
     )
   }
 
-  validateOnBlur(item, type) {
-    return item.addEventListener('blur', (event) => {
-      if (event.target.value) {
-        this.apply(event.target, type)
-      }
-    })
-  }
-
-  apply(el, type) {
-    const valid = this.validator.check(el.value, type)
-    valid ? this.validator.valid(el) : this.validator.invalid(el, type)
+  eachFieldValidate(type) {
+    return (
+      this.fields[type] &&
+      this.fields[type].forEach((el) => {
+        this.validator.validateOnBlur(el, type)
+        el.value && this.validator.apply(el, type)
+      })
+    )
   }
 }
-
-globalThis.BrValidator = new Br()

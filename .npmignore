@@ -5,3 +5,4 @@ node_modules/
 webpack.config.js
 .gitignore
 index.html
+*.map
