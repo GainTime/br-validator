@@ -1,0 +1,6 @@
+src/
+node_modules/
+.prettierrc
+.tsconfig.json
+webpack.config.js
+.gitignore
